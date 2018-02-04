@@ -20,16 +20,17 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: 'hello',
+@Component
+export default class extends Vue {
+  name:string = 'hello'
   data () {
     return {
       msg: 'Welcome to Your Vue.js PWA'
     }
   }
-});
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
