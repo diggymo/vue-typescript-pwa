@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import PageNotFound from '@/components/PageNotFound'
 import Header from '@/components/Header'
 import Memo from '@/components/Memo'
+import Login from '@/components/Login'
 
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
@@ -16,7 +17,7 @@ export default new Router({
   routes: [
     {
       path: '/session',
-      component: Hello
+      component: Login
     },
     {
       path: '/',
@@ -25,13 +26,10 @@ export default new Router({
         {
           path: 'memo', component: Memo
         },
-        {
-          path: '*', component: PageNotFound
-        },
       ]
     },
     {
-      path: '/',
+      path: '*',
       component: PageNotFound
     },
   ]
