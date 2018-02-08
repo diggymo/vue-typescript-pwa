@@ -1,12 +1,21 @@
 <template>
   <div id="app">
       <router-view></router-view>
+      <!-- <b-loading :active.sync="isLoading" :canCancel="true"></b-loading> -->
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'app'
+  name: 'app',
+  computed: {
+    // 算出 getter 関数
+    isLoading: function() {
+      // `this` は vm インスタンスを指します
+      return this.$store.state.pending;
+    }
+  }
 }
 </script>
 

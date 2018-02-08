@@ -16,6 +16,7 @@ Vue.use(Buefy);
  * 別ファイルにしたいが、別にすると`TypeError: this.$store is undefined`
  */
 Vue.use(Vuex);
+
 import axios from 'axios';
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -47,8 +48,6 @@ const store = new Vuex.Store({
       // commitはコールバック関数
       // ローディング画面などを表示する場合に使用
       commit(LOGIN);
-      console.log("##")
-      console.log(creds)
       // axios.get('').then(res => {
       //   localStorage.setItem("token", "###");
       // }).catch(err => {
@@ -57,11 +56,6 @@ const store = new Vuex.Store({
     logout({ commit }) {
       localStorage.removeItem("token");
       commit(LOGOUT);
-    }
-  },
-  getters: {
-    isLoggedIn: state => {
-      return state.isLoggedIn
     }
   }
 });
