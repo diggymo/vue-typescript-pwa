@@ -9,12 +9,12 @@
           <div class="columns">
             <div class="column is-4">
               <b-field horizontal label="Username">
-                  <b-input name="username" maxlength="10"></b-input>
+                  <b-input name="username" v-model="username" maxlength="10"></b-input>
               </b-field>
               <b-field horizontal label="Password">
-                  <b-input name="password" type="password" maxlength="10"></b-input>
+                  <b-input name="password" v-model="password" type="password" maxlength="10"></b-input>
               </b-field>
-              <a class="button is-danger" @click="login">Login</a>
+              <button class="button is-danger" @click="login">Login</button>
             </div>
           </div>
         </div>
@@ -29,17 +29,13 @@ import axios from "axios";
 
 @Component
 export default class Login extends Vue {
-  username: string;
-  password: string;
+  username: string = "";
+  password: string = "";
   login() {
-    return axios
-      .get("/api/v1/login", {
-        data: {
-          username: this.username,
-          password: this.password
-        }
-      })
-      .then(response => console.log(response));
+    this.$store.dispatch("login", {
+      username: this.username,
+      password: this.password
+    });
   }
 }
 </script>
