@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
-    </main>
+      <router-view v-on:login="login"></router-view>
+      <b-loading :active.sync="isLoading" :canCancel="true"></b-loading>
+      <button type="button" @click="login">aaaaa</button>
   </div>
 </template>
 
 <script>
+import axios from './axios/myAxios'
+
 export default {
-  name: 'app'
+  name: 'app',
+  data: function(){
+    return {
+      isLoading: false
+    }
+  },
+   methods: {
+    login (username, password) {
+      this.isLoading = true
+      console.log(username)
+      console.log(password)
+      axios.get( 'https://qiita.com/api/v2/users/diggymo/items')
+      .then(res => {
+        console.log("#OKOK")
+        console.log(res)
+        localStorage.setItem('jwt-token', 'ABCDEFG')
+        this.isLoading = false
+      })
+      .catch(res=> {
+        console.log("NGNG")
+        console.log(res)
+        this.isLoading = false
+      })
+    }
+  }
 }
 </script>
 

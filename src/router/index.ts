@@ -1,20 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import PageNotFound from '@/components/PageNotFound'
+import Header from '@/components/Header'
+import Memo from '@/components/Memo'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Hello',
-      component: Hello
+      path: '/session',
+      component: Login
     },
     {
-      path: '/untititi',
-      name: 'Hello00000',
-      component: Hello
-    }
+      path: '/',
+      component: Header,
+      children: [
+        {
+          path: 'memo', component: Memo
+        },
+        // 入れ子構造になってしまうから、redirect
+        {
+          path: '/',
+          redirect: '/404'
+        }
+      ]
+    },
+    {
+      path: '*',
+      component: PageNotFound
+    },
   ]
 })
