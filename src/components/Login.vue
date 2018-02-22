@@ -15,7 +15,7 @@
                   <b-input name="password" v-model="password" type="password" maxlength="10"></b-input>
               </b-field>
               <!-- <button class="button is-danger" @click="login">Login</button> -->
-              <button class="button is-danger" >Login</button>
+              <button class="button is-danger" @click="$emit('login', username, password)">Login</button>
             </div>
           </div>
         </div>
@@ -32,11 +32,5 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class Login extends Vue {
   username: string = "";
   password: string = "";
-  // login() {
-  //   this.$store.dispatch("login", {
-  //     username: this.username,
-  //     password: this.password
-  //   });
-  // }
 }
 </script>

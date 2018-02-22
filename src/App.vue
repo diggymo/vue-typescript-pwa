@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-      <router-view></router-view>
-      <!-- <b-loading :active.sync="isLoading" :canCancel="true"></b-loading> -->
+      <router-view v-on:login="login"></router-view>
+      <b-loading :active.sync="isLoading" :canCancel="true"></b-loading>
+      <button type="button" @click="login">aaaaa</button>
   </div>
 </template>
 
 <script>
+import axios from './axios/myAxios'
 
 export default {
   name: 'app',
-  computed: {
-    // 算出 getter 関数
-    isLoading: function() {
-      // `this` は vm インスタンスを指します
-      return this.$store.state.pending;
+  data: function(){
+    return {
+      isLoading: false
+    }
+  },
+   methods: {
+    login (username, password) {
+      this.isLoading = true
+      console.log(username)
+      console.log(password)
+      axios.get( 'https://qiita.com/api/v2/users/diggymo/items')
+      .then(res => {
+        console.log("#OKOK")
+        console.log(res)
+        localStorage.setItem('jwt-token', 'ABCDEFG')
+        this.isLoading = false
+      })
+      .catch(res=> {
+        console.log("NGNG")
+        console.log(res)
+        this.isLoading = false
+      })
     }
   }
 }
